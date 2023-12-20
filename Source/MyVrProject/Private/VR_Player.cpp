@@ -6,6 +6,7 @@
 #include "Components/StaticMeshComponent.h"
 #include "Components/SkeletalMeshComponent.h"
 #include "MotionControllerComponent.h"
+#include "HeadMountedDisplayFunctionLibrary.h"
 
 // Sets default values
 AVR_Player::AVR_Player()
@@ -21,15 +22,22 @@ AVR_Player::AVR_Player()
 
 	leftController = CreateDefaultSubobject<UMotionControllerComponent>(TEXT("Left Controller"));
 	leftController->SetupAttachment(RootComponent);
+	leftController->SetRelativeLocation(FVector(50,-30,-10));
+	leftController->SetTrackingMotionSource(FName("Left"));
 
 	leftHand = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("Left Hand Mesh"));
 	leftHand->SetupAttachment(leftController);
+	leftHand->SetRelativeRotation(FRotator(-90,-90,0));
 
 	rightController = CreateDefaultSubobject<UMotionControllerComponent>(TEXT("Right Controller"));
 	rightController->SetupAttachment(RootComponent);
+	rightController->SetRelativeLocation(FVector(50, 30, -10));
+	rightController->SetTrackingMotionSource(FName("Right"));
+
 
 	rightHand = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("Right Hand Mesh"));
 	rightHand->SetupAttachment(rightController);
+	rightHand->SetRelativeRotation(FRotator(90, -90,0));
 
 
 
@@ -40,6 +48,10 @@ void AVR_Player::BeginPlay()
 {
 	Super::BeginPlay();
 	
+	//헤드 마운트 디스플레이 장비의 트래킹 (추적) 기준 위치를 Stage로 설정한다.
+	UHeadMountedDisplayFunctionLibrary::SetTrackingOrigin(EHMDTrackingOrigin::Stage);
+
+
 }
 
 // Called every frame
