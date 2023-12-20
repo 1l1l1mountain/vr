@@ -7,6 +7,7 @@
 #include "Components/SkeletalMeshComponent.h"
 #include "MotionControllerComponent.h"
 #include "HeadMountedDisplayFunctionLibrary.h"
+#include "Components/TextRenderComponent.h"
 
 // Sets default values
 AVR_Player::AVR_Player()
@@ -27,17 +28,36 @@ AVR_Player::AVR_Player()
 
 	leftHand = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("Left Hand Mesh"));
 	leftHand->SetupAttachment(leftController);
-	leftHand->SetRelativeRotation(FRotator(-90,-90,0));
+	leftHand->SetRelativeRotation(FRotator(-90,-45,-180));
+
+	leftLog = CreateDefaultSubobject<UTextRenderComponent>(TEXT("Left Log"));
+	leftLog->SetupAttachment(leftHand);
+	leftLog->SetRelativeLocation(FVector(-20, 10, 0));
+	leftLog->SetRelativeRotation(FRotator(0,-90, -90));
+	leftLog->SetHorizontalAlignment(EHTA_Center);
+	leftLog->SetVerticalAlignment(EVRTA_TextCenter);
+	leftLog->SetWorldSize(20);
+	leftLog->SetTextRenderColor(FColor(255,255,0));
+
 
 	rightController = CreateDefaultSubobject<UMotionControllerComponent>(TEXT("Right Controller"));
 	rightController->SetupAttachment(RootComponent);
 	rightController->SetRelativeLocation(FVector(50, 30, -10));
 	rightController->SetTrackingMotionSource(FName("Right"));
 
-
 	rightHand = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("Right Hand Mesh"));
 	rightHand->SetupAttachment(rightController);
-	rightHand->SetRelativeRotation(FRotator(90, -90,0));
+	rightHand->SetRelativeRotation(FRotator(90, 45,0));
+
+	rightLog = CreateDefaultSubobject<UTextRenderComponent>(TEXT("Right Log"));
+	rightLog->SetupAttachment(rightHand);
+	rightLog->SetRelativeLocation(FVector(20, 10, 0));
+	rightLog->SetRelativeRotation(FRotator(0, -90, 90));
+	rightLog->SetHorizontalAlignment(EHTA_Center);
+	rightLog->SetVerticalAlignment(EVRTA_TextCenter);
+	rightLog->SetWorldSize(20);
+	rightLog->SetTextRenderColor(FColor(255, 255, 0));
+
 
 
 

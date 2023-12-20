@@ -40,4 +40,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category= "MySettings|Components")
 	class USkeletalMeshComponent* rightHand;
 	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category= "MySettings|Components")
+	class UTextRenderComponent* leftLog;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category= "MySettings|Components")
+	class UTextRenderComponent* rightLog;
+
 };
