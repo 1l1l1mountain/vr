@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "InputActionValue.h"
 #include "VR_Player.generated.h"
 
 UCLASS()
@@ -44,5 +45,24 @@ public:
 	class UTextRenderComponent* leftLog;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category= "MySettings|Components")
 	class UTextRenderComponent* rightLog;
+	
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category= "MySettings|Inputs")
+	class UInputMappingContext* imc;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category= "MySettings|Inputs")
+	class UInputAction* ia_rightTriggerBool;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category= "MySettings|Inputs")
+	class UInputAction* ia_rightTriggerFloat;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category= "MySettings|Inputs")
+	class UInputAction* ia_rightThumbStick;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category= "MySettings|Inputs")
+	class UInputAction* ia_rightTriggerTouch;
+
+
+private:
+	void RightTriggerInput_Bool(const FInputActionValue& value);
+	void RightTriggerInput_Float(const FInputActionValue& value);
+	void RightThumbstickInput(const FInputActionValue& value);
+	void RightTriggerInput_Touch(const FInputActionValue& value);
 
 };
