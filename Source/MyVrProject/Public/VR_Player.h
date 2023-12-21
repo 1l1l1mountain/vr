@@ -58,6 +58,12 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category= "MySettings|Inputs")
 	class UInputAction* ia_rightTriggerTouch;
 
+	//3일차
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category= "MySettings|Inputs")
+	class UInputAction* ia_moveInput;
+	float speed;
+	class UInputAction* ia_mouseInput;
+
 
 private:
 	void RightTriggerInput_Bool(const FInputActionValue& value);
@@ -65,4 +71,8 @@ private:
 	void RightThumbstickInput(const FInputActionValue& value);
 	void RightTriggerInput_Touch(const FInputActionValue& value);
 
+
+	//3일차
+	void MoveInput_Axis2D(const FInputActionValue& value);
+	void MouseInput_Axis1D(const FInputActionValue& value);
 };

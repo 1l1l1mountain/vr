@@ -114,6 +114,9 @@ void AVR_Player::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent
 		enhancedInputComponent->BindAction(ia_rightThumbStick, ETriggerEvent::Triggered , this, &AVR_Player::RightThumbstickInput);
 		enhancedInputComponent->BindAction(ia_rightThumbStick, ETriggerEvent::Completed, this, &AVR_Player::RightThumbstickInput);
 		
+		//3일차
+		enhancedInputComponent->BindAction(ia_moveInput, ETriggerEvent::Triggered, this, &AVR_Player::MoveInput_Axis2D);
+		enhancedInputComponent->BindAction(ia_mouseInput,ETriggerEvent::Triggered, this, &AVR_Player::MouseInput_Axis1D);
 
 	}
 }
@@ -140,6 +143,9 @@ void AVR_Player::RightThumbstickInput(const FInputActionValue& value)
 {
 	FVector2D inputValue = value.Get<FVector2D>();
 	rightLog->SetText(FText::FromString(FString::Printf(TEXT("X: %.2f\r\nY: %.2f"), inputValue.X, inputValue.Y )));
+	
+	AddControllerYawInput(inputValue.X);
+	//회전 add controller yaw input
 }
 
 void AVR_Player::RightTriggerInput_Touch(const FInputActionValue& value)
@@ -152,6 +158,33 @@ void AVR_Player::RightTriggerInput_Touch(const FInputActionValue& value)
 	{
 		rightLog->SetText(FText::FromString(FString("RightTrigger Untouched!")));
 	}
+
+}
+
+void AVR_Player::MoveInput_Axis2D(const FInputActionValue& value)
+{
+	FVector2D inputValue = value.Get<FVector2D>();
+	//inputValue.X  
+	//inputValue.Y
+	
+	//P= P0 + VT
+	
+	FVector P0 = GetActorLocation();
+	FVector dir = FVector(inputValue.X, 0, 0) + FVector(0, inputValue.Y, 0);
+	dir.Normalize();
+	
+	FVector velocity = speed * dir;
+	SetActorLocation(P0 + velocity * GetWorld()->GetDeltaSeconds());
+	
+
+
+
+}
+
+void AVR_Player::MouseInput_Axis1D(const FInputActionValue& value)
+{
+	float inputValue = value.Get<float>();
+	AddControllerYawInput(inputValue);
 
 }
 
