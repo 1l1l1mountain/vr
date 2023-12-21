@@ -113,8 +113,8 @@ void AVR_Player::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent
 
 
 
-		/*enhancedInputComponent->BindAction(ia_rightTriggerFloat, ETriggerEvent::Triggered , this, &AVR_Player::RightTriggerInput_Float);
-		enhancedInputComponent->BindAction(ia_rightTriggerFloat, ETriggerEvent::Completed, this, &AVR_Player::RightTriggerInput_Float);*/
+		enhancedInputComponent->BindAction(ia_rightTriggerFloat, ETriggerEvent::Triggered , this, &AVR_Player::RightTriggerInput_Float);
+		enhancedInputComponent->BindAction(ia_rightTriggerFloat, ETriggerEvent::Completed, this, &AVR_Player::RightTriggerInput_Float);
 
 		enhancedInputComponent->BindAction(ia_rightThumbStick, ETriggerEvent::Triggered , this, &AVR_Player::RightThumbstickInput);
 		enhancedInputComponent->BindAction(ia_rightThumbStick, ETriggerEvent::Completed, this, &AVR_Player::RightThumbstickInput);
