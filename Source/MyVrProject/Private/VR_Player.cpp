@@ -26,11 +26,12 @@ AVR_Player::AVR_Player()
 	leftController = CreateDefaultSubobject<UMotionControllerComponent>(TEXT("Left Controller"));
 	leftController->SetupAttachment(RootComponent);
 	leftController->SetRelativeLocation(FVector(50,-30,-10));
-	leftController->SetTrackingMotionSource(FName("Left"));
+	leftController->SetTrackingMotionSource(FName("Left")); // 실제 트래커가 가진 컨트롤러의 값을 읽겠다느낌
 
 	leftHand = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("Left Hand Mesh"));
 	leftHand->SetupAttachment(leftController);
-	leftHand->SetRelativeRotation(FRotator(-90,-45,-180));
+	leftHand->SetRelativeRotation(FRotator(-70,-180,90));
+	//(Pitch=-70.000000,Yaw=-180.000000,Roll=90.000000)
 
 	leftLog = CreateDefaultSubobject<UTextRenderComponent>(TEXT("Left Log"));
 	leftLog->SetupAttachment(leftHand);
@@ -49,7 +50,8 @@ AVR_Player::AVR_Player()
 
 	rightHand = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("Right Hand Mesh"));
 	rightHand->SetupAttachment(rightController);
-	rightHand->SetRelativeRotation(FRotator(90, 45,0));
+	rightHand->SetRelativeRotation(FRotator(70, 0,90));
+	//(Pitch = 70.000000, Yaw = -0.000000, Roll = 90.000000)
 
 	rightLog = CreateDefaultSubobject<UTextRenderComponent>(TEXT("Right Log"));
 	rightLog->SetupAttachment(rightHand);
@@ -225,7 +227,7 @@ void AVR_Player::BasicTeleport(float sightRange, FVector direction, FVector pivo
 	//가리킨 지점(direction 방향으로 SightRange 거리만큼 발사한 라인이 땅과 닿은 지점)으로 
 	FHitResult hitInfo;
 	FVector startVec = pivot;
-	FVector endVec = pivot * sightRange; //<< ??
+	FVector endVec = direction * sightRange; //<< ??
 	bool bIsCollide = GetWorld()->LineTraceSingleByChannel(hitInfo,startVec, endVec,ECC_Visibility);
 
 
