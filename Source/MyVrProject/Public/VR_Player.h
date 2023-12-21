@@ -62,17 +62,19 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category= "MySettings|Inputs")
 	class UInputAction* ia_moveInput;
 	float speed;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category= "MySettings|Inputs")
 	class UInputAction* ia_mouseInput;
 
 
 private:
-	void RightTriggerInput_Bool(const FInputActionValue& value);
+	void RightTriggerInput_Bool(const FInputActionValue& value); //외부에서 받는 값을 바꾸지 않겠다.
 	void RightTriggerInput_Float(const FInputActionValue& value);
 	void RightThumbstickInput(const FInputActionValue& value);
 	void RightTriggerInput_Touch(const FInputActionValue& value);
 
 
 	//3일차
-	void MoveInput_Axis2D(const FInputActionValue& value);
-	void MouseInput_Axis1D(const FInputActionValue& value);
+	void PlayerMove(const FInputActionValue& value);
+	void PlayerRotate(const FInputActionValue& value);
+	void BasicTeleport(float sightRange, FVector direction,FVector pivot);
 };
