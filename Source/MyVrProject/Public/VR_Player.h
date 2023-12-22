@@ -45,7 +45,10 @@ public:
 	class UTextRenderComponent* leftLog;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category= "MySettings|Components")
 	class UTextRenderComponent* rightLog;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category= "MySettings|Components")
+	class UMoveComponent* moveComp;
 	
+
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category= "MySettings|Inputs")
 	class UInputMappingContext* imc;
