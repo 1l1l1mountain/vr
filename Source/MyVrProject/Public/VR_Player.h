@@ -52,22 +52,26 @@ public:
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category= "MySettings|Inputs")
 	class UInputMappingContext* imc;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category= "MySettings|Inputs")
-	class UInputAction* ia_rightTriggerBool;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category= "MySettings|Inputs")
-	class UInputAction* ia_rightTriggerFloat;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category= "MySettings|Inputs")
-	class UInputAction* ia_rightThumbStick;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category= "MySettings|Inputs")
-	class UInputAction* ia_rightTriggerTouch;
+	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category= "MySettings|Inputs")
+	//class UInputAction* ia_rightTriggerBool;
+	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category= "MySettings|Inputs")
+	//class UInputAction* ia_rightTriggerFloat;
+	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category= "MySettings|Inputs")
+	//class UInputAction* ia_rightThumbStick;
+	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category= "MySettings|Inputs")
+	//class UInputAction* ia_rightTriggerTouch;
 
-	//3일차
+	////3일차
+	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category= "MySettings|Inputs")
+	//class UInputAction* ia_moveInput;
+	//float speed;
+	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category= "MySettings|Inputs")
+	//class UInputAction* ia_mouseInput;
+	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category= "MySettings|Inputs")
+	//class UInputAction* ia_leftTriggerBool;
+	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category= "MySettings|Inputs")
-	class UInputAction* ia_moveInput;
-	float speed;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category= "MySettings|Inputs")
-	class UInputAction* ia_mouseInput;
-
+	TArray<class UInputAction*> ia_inputs;
 
 private:
 	void RightTriggerInput_Bool(const FInputActionValue& value); //외부에서 받는 값을 바꾸지 않겠다.

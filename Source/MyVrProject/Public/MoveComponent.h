@@ -25,13 +25,23 @@ public:
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
-	void SetupPlayerInputComponent(class UEnhancedInputComponent* enhancedInputComponent);
+	void SetupPlayerInputComponent(class UEnhancedInputComponent* enhancedInputComponent, TArray<class UInputAction*> inputs);
+
+	UPROPERTY(EditAnywhere , Category = "MySettings")
+	float lineSpeed = 500;
+	
+	UPROPERTY(EditAnywhere , Category = "MySettings")
+	float teleportDelay = 1.0f;
+
+
 
 private:
 
 	class AVR_Player* player;
+	FVector targetLocation;
 
 	void ShowLine(const FInputActionValue& value);
 	void DrawTrajectory(FVector startLoc, FVector dir,float speed, int32 segment, float interval);
-
+	void DrawTrajectoryBezier(FVector startLoc,FVector dir , int32 segment);
+	void Teleport();
 };

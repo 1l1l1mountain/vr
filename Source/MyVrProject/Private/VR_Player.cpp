@@ -115,19 +115,19 @@ void AVR_Player::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent
 
 
 
-		enhancedInputComponent->BindAction(ia_rightTriggerFloat, ETriggerEvent::Triggered , this, &AVR_Player::RightTriggerInput_Float);
-		enhancedInputComponent->BindAction(ia_rightTriggerFloat, ETriggerEvent::Completed, this, &AVR_Player::RightTriggerInput_Float);
+		//enhancedInputComponent->BindAction(ia_rightTriggerFloat, ETriggerEvent::Triggered , this, &AVR_Player::RightTriggerInput_Float);
+		//enhancedInputComponent->BindAction(ia_rightTriggerFloat, ETriggerEvent::Completed, this, &AVR_Player::RightTriggerInput_Float);
 
-		enhancedInputComponent->BindAction(ia_rightThumbStick, ETriggerEvent::Triggered , this, &AVR_Player::RightThumbstickInput);
-		enhancedInputComponent->BindAction(ia_rightThumbStick, ETriggerEvent::Completed, this, &AVR_Player::RightThumbstickInput);
-		
-		//3일차 
-		enhancedInputComponent->BindAction(ia_moveInput, ETriggerEvent::Triggered, this, &AVR_Player::PlayerMove); //인핸스 인풋은 무조건 바인드액션으로
-		enhancedInputComponent->BindAction(ia_mouseInput,ETriggerEvent::Triggered, this, &AVR_Player::PlayerRotate);
+		//enhancedInputComponent->BindAction(ia_rightThumbStick, ETriggerEvent::Triggered , this, &AVR_Player::RightThumbstickInput);
+		//enhancedInputComponent->BindAction(ia_rightThumbStick, ETriggerEvent::Completed, this, &AVR_Player::RightThumbstickInput);
+		//
+		////3일차 
+		//enhancedInputComponent->BindAction(ia_moveInput, ETriggerEvent::Triggered, this, &AVR_Player::PlayerMove); //인핸스 인풋은 무조건 바인드액션으로
+		//enhancedInputComponent->BindAction(ia_mouseInput,ETriggerEvent::Triggered, this, &AVR_Player::PlayerRotate);
 
 
 		//컴포넌트에 입력 이벤트 넘겨주기
-		moveComp->SetupPlayerInputComponent(enhancedInputComponent);
+		moveComp->SetupPlayerInputComponent(enhancedInputComponent, ia_inputs);
 	}
 }
 
