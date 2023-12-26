@@ -13,6 +13,7 @@
 #include "Components/CapsuleComponent.h"
 #include "MoveComponent.h"
 #include "NiagaraComponent.h"
+#include "GrabComponent.h"
 // Sets default values
 AVR_Player::AVR_Player()
 {
@@ -70,6 +71,7 @@ AVR_Player::AVR_Player()
 
 	//액터 컴포넌트
 	moveComp = CreateDefaultSubobject<UMoveComponent>(TEXT("Movce Component"));
+	grabComp = CreateDefaultSubobject<UGrabComponent>(TEXT("Grab Component"));
 
 }
 
@@ -132,6 +134,7 @@ void AVR_Player::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent
 
 		//컴포넌트에 입력 이벤트 넘겨주기
 		moveComp->SetupPlayerInputComponent(enhancedInputComponent, ia_inputs);
+		grabComp->SetupPlayerInpQutComponent(enhancedInputComponent, ia_inputs);
 	}
 }
 

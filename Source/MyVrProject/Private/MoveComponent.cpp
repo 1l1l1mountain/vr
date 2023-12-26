@@ -69,7 +69,7 @@ void UMoveComponent::ShowLine(const FInputActionValue& value)
 	
 	bool bIsPressed = value.Get<bool>();
 
-	player->leftLog->SetText(FText::FromString(FString::Printf(TEXT("%s"), bIsPressed ? *FString("Pressed!") : *FString("Released..."))));
+	//player->leftLog->SetText(FText::FromString(FString::Printf(TEXT("%s"), bIsPressed ? *FString("Pressed!") : *FString("Released..."))));
 
 	if (bIsPressed && player!= nullptr)
 	{

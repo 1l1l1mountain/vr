@@ -4,6 +4,7 @@
 #include "PickUpActor.h"
 #include "Components/BoxComponent.h"
 #include "Components/StaticMeshComponent.h"
+#include "Components/SkeletalMeshComponent.h"
 // Sets default values
 APickUpActor::APickUpActor()
 {
@@ -37,5 +38,17 @@ void APickUpActor::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+}
+
+void APickUpActor::Grabbed(USkeletalMeshComponent* handMesh)
+{
+	// 잡혔을 때의 핸드 메시에 부착된다.
+	
+	
+	//!! 물리가 적용이 되면 적용이 안됨. 피직스를 오프 시켜야함. 물리가 적용되면, 오류남.
+	boxComp->SetSimulatePhysics(false);
+
+	FAttachmentTransformRules attachmentRules = FAttachmentTransformRules::KeepWorldTransform;
+	AttachToComponent(handMesh, attachmentRules);
 }
 

@@ -44,7 +44,7 @@ void ABezierCurveActor::DrawBezierCurve(FVector loc0, FVector loc1, FVector loc2
 	FVector b;
 	
 	//°è»ê
-	for (float i = 0;i < 1.0f / 20;i = i + 0.05)
+	for (float i = 0;i < 1.0f; i += 0.05f)
 	{
 		m0 = FMath::Lerp(loc0, loc1, i);
 		m1 = FMath::Lerp(loc1, loc2, i);
