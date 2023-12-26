@@ -47,7 +47,8 @@ public:
 	class UTextRenderComponent* rightLog;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category= "MySettings|Components")
 	class UMoveComponent* moveComp;
-	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category= "MySettings|Components")
+	class UNiagaraComponent* teleportFX;
 
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category= "MySettings|Inputs")

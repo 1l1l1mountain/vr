@@ -12,6 +12,7 @@
 #include "EnhancedInputComponent.h"
 #include "Components/CapsuleComponent.h"
 #include "MoveComponent.h"
+#include "NiagaraComponent.h"
 // Sets default values
 AVR_Player::AVR_Player()
 {
@@ -63,7 +64,10 @@ AVR_Player::AVR_Player()
 	rightLog->SetWorldSize(20);
 	rightLog->SetTextRenderColor(FColor(255, 255, 0));
 
-	
+	teleportFX = CreateDefaultSubobject<UNiagaraComponent>(TEXT("Teleport Effect"));
+	teleportFX->SetupAttachment(leftHand);
+
+
 	//액터 컴포넌트
 	moveComp = CreateDefaultSubobject<UMoveComponent>(TEXT("Movce Component"));
 
@@ -232,7 +236,7 @@ void AVR_Player::BasicTeleport(float sightRange, FVector direction, FVector pivo
 	//가리킨 지점(direction 방향으로 SightRange 거리만큼 발사한 라인이 땅과 닿은 지점)으로 
 	FHitResult hitInfo;
 	FVector startVec = pivot;
-	FVector endVec = direction * sightRange; //<< ??
+	FVector endVec = startVec + direction * sightRange; //<< ??
 	bool bIsCollide = GetWorld()->LineTraceSingleByChannel(hitInfo,startVec, endVec,ECC_Visibility);
 
 

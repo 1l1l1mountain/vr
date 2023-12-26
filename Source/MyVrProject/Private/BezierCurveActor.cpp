@@ -46,9 +46,9 @@ void ABezierCurveActor::DrawBezierCurve(FVector loc0, FVector loc1, FVector loc2
 	//°è»ê
 	for (float i = 0;i < 1.0f / 20;i = i + 0.05)
 	{
-		FVector m0 = FMath::Lerp(loc0, loc1, i);
-		FVector m1 = FMath::Lerp(loc1, loc2, i);
-		FVector b = FMath::Lerp(m0, m1, i);
+		m0 = FMath::Lerp(loc0, loc1, i);
+		m1 = FMath::Lerp(loc1, loc2, i);
+		b = FMath::Lerp(m0, m1, i);
 	
 		linePositions.Add(b);
 	}

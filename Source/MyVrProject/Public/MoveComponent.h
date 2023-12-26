@@ -33,12 +33,14 @@ public:
 	UPROPERTY(EditAnywhere , Category = "MySettings")
 	float teleportDelay = 1.0f;
 
-
+	UPROPERTY(EditAnywhere,Category = "MySettings")
+	TSubclassOf<class ATeleportRingActor> teleportRingBP;
 
 private:
 
 	class AVR_Player* player;
 	FVector targetLocation;
+	class ATeleportRingActor* teleportRingInst;
 
 	void ShowLine(const FInputActionValue& value);
 	void DrawTrajectory(FVector startLoc, FVector dir,float speed, int32 segment, float interval);
