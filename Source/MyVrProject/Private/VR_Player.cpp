@@ -121,20 +121,20 @@ void AVR_Player::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent
 
 
 
-		//enhancedInputComponent->BindAction(ia_rightTriggerFloat, ETriggerEvent::Triggered , this, &AVR_Player::RightTriggerInput_Float);
-		//enhancedInputComponent->BindAction(ia_rightTriggerFloat, ETriggerEvent::Completed, this, &AVR_Player::RightTriggerInput_Float);
+		//enhancedInputComponent->BindAction(ia_inputs[3], ETriggerEvent::Triggered, this, &AVR_Player::RightTriggerInput_Float);
+		//enhancedInputComponent->BindAction(ia_inputs[3], ETriggerEvent::Completed, this, &AVR_Player::RightTriggerInput_Float);
 
 		//enhancedInputComponent->BindAction(ia_rightThumbStick, ETriggerEvent::Triggered , this, &AVR_Player::RightThumbstickInput);
 		//enhancedInputComponent->BindAction(ia_rightThumbStick, ETriggerEvent::Completed, this, &AVR_Player::RightThumbstickInput);
 		//
 		////3일차 
-		//enhancedInputComponent->BindAction(ia_moveInput, ETriggerEvent::Triggered, this, &AVR_Player::PlayerMove); //인핸스 인풋은 무조건 바인드액션으로
-		//enhancedInputComponent->BindAction(ia_mouseInput,ETriggerEvent::Triggered, this, &AVR_Player::PlayerRotate);
+		enhancedInputComponent->BindAction(ia_inputs[1], ETriggerEvent::Triggered, this, &AVR_Player::PlayerMove); //인핸스 인풋은 무조건 바인드액션으로
+		enhancedInputComponent->BindAction(ia_inputs[2], ETriggerEvent::Triggered, this, &AVR_Player::PlayerRotate);
 
 
 		//컴포넌트에 입력 이벤트 넘겨주기
 		moveComp->SetupPlayerInputComponent(enhancedInputComponent, ia_inputs);
-		grabComp->SetupPlayerInpQutComponent(enhancedInputComponent, ia_inputs);
+		//grabComp->SetupPlayerInpQutComponent(enhancedInputComponent, ia_inputs);
 	}
 }
 
@@ -154,7 +154,7 @@ void AVR_Player::RightTriggerInput_Bool(const FInputActionValue& value)
 void AVR_Player::RightTriggerInput_Float(const FInputActionValue& value)
 {
 	rightLog->SetText(FText::FromString(FString::Printf(TEXT("RightTrigger : %.2f"),value.Get<float>())));
-	
+	//UE_LOG(LogTemp, Log, TEXT("X : %.2f"),value.Get<float>());
 	BasicTeleport(500, rightController->GetForwardVector(), rightController->GetComponentLocation());
 
 }
@@ -239,14 +239,14 @@ void AVR_Player::BasicTeleport(float sightRange, FVector direction, FVector pivo
 	//가리킨 지점(direction 방향으로 SightRange 거리만큼 발사한 라인이 땅과 닿은 지점)으로 
 	FHitResult hitInfo;
 	FVector startVec = pivot;
-	FVector endVec = startVec + direction * sightRange; //<< ??
+	FVector endVec = startVec + direction * sightRange; 
 	bool bIsCollide = GetWorld()->LineTraceSingleByChannel(hitInfo,startVec, endVec,ECC_Visibility);
 
 
 	// 만일, 닿았다면 나를 이동시킨다.
 	if (bIsCollide)
 	{
-		//SetActorLocation(hitInfo.ImpactPoint + FVector(0,0,GetCapsuleComponent()->GetScaledCapsuleHalfHeight())); //분배효과 조심
+		SetActorLocation(hitInfo.ImpactPoint + FVector(0,0,GetCapsuleComponent()->GetScaledCapsuleHalfHeight())); //분배효과 조심
 			
 		// 닿았다면 닿은 지점까지 라인을 그린다.
 		DrawDebugLine(GetWorld(),startVec,hitInfo.ImpactPoint,FColor::Red);
@@ -254,7 +254,7 @@ void AVR_Player::BasicTeleport(float sightRange, FVector direction, FVector pivo
 	// 닿지 않았다면 최대 지점까지 그린다.
 	else
 	{
-		DrawDebugLine(GetWorld(), startVec, endVec, FColor::Red);
+		DrawDebugLine(GetWorld(), startVec, endVec, FColor::Green);
 
 	
 	}

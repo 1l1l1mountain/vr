@@ -30,7 +30,7 @@ void UMoveComponent::BeginPlay()
 
 	// ...
 	
-	player = GetOwner<AVR_Player>();
+	player = GetOwner<AVR_Player>();//겟 오너는 생성자에서 하면 안되는 듯함.
 
 	//텔레포트 지점 위치에 표시할 링 이펙트 액터를 생성한다.
 	FActorSpawnParameters params;
@@ -56,20 +56,22 @@ void UMoveComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorC
 
 void UMoveComponent::SetupPlayerInputComponent(UEnhancedInputComponent* enhancedInputComponent, TArray<UInputAction*> inputs)
 {
-	if (player != nullptr)
-	{
+	//지금 플레이어가 널임. 여기가 비긴플레이보다 먼저 시작되는듯함! 물어보기
+	
 		enhancedInputComponent->BindAction(inputs[0], ETriggerEvent::Triggered, this, &UMoveComponent::ShowLine);
+
 		enhancedInputComponent->BindAction(inputs[0], ETriggerEvent::Triggered, this, &UMoveComponent::Teleport);
-	}
+
 
 }
 
 void UMoveComponent::ShowLine(const FInputActionValue& value)
 {
 	
+
 	bool bIsPressed = value.Get<bool>();
 
-	//player->leftLog->SetText(FText::FromString(FString::Printf(TEXT("%s"), bIsPressed ? *FString("Pressed!") : *FString("Released..."))));
+	/*player->leftLog->SetText(FText::FromString(FString::Printf(TEXT("%s"), bIsPressed ? *FString("Pressed!") : *FString("Released..."))));*/
 
 	if (bIsPressed && player!= nullptr)
 	{
@@ -113,23 +115,23 @@ void UMoveComponent::DrawTrajectory(FVector startLoc, FVector dir, float speed, 
 	}
 
 	// 계산된 위치를 선으로 연결해서 그린다.
-	//for (int32 i = 0;i < linePositions.Num() - 1; i++) //점으로 선을 만들면 개수 -1 
-	//{
-	//	DrawDebugLine(GetWorld(),linePositions[i], linePositions[i+1],FColor::Green,false , 0 , 0 , 2.0f);
-	//}
+	for (int32 i = 0;i < linePositions.Num() - 1; i++) //점으로 선을 만들면 개수 -1 
+	{
+		DrawDebugLine(GetWorld(),linePositions[i], linePositions[i+1],FColor::Green,false , 0 , 0 , 2.0f);
+	}
 
-	UNiagaraDataInterfaceArrayFunctionLibrary::SetNiagaraArrayVector(player->teleportFX, FName("PointArray"), linePositions);
+	//UNiagaraDataInterfaceArrayFunctionLibrary::SetNiagaraArrayVector(player->teleportFX, FName("PointArray"), linePositions);
 
 
 	//마지막 위치에 빨강 상자를 표시한다.
 	targetLocation = linePositions[linePositions.Num() - 1];
-	//DrawDebugSolidBox(GetWorld(), targetLocation, FVector(5), FColor::Red);
+	DrawDebugSolidBox(GetWorld(), targetLocation, FVector(5), FColor::Red);
 
-	if (teleportRingInst != nullptr)
+	/*if (teleportRingInst != nullptr)
 	{
 		teleportRingInst->SetActorLocation(targetLocation);
 		teleportRingInst->ring_FX->SetVisibility(true);
-	}
+	}*/
 	
 }
 
