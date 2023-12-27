@@ -31,4 +31,11 @@ private:
 	class AVR_Player* player;
 
 	void GrabObject();
+	void ReleaseObject();
+	class APickUpActor* currentObject;
+	FVector prevLoc;
+	FVector deltaLoc;
+	FQuat prevQuat;
+	FQuat deltaQuat;
+
 };
