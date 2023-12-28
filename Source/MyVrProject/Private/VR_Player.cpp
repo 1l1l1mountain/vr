@@ -15,6 +15,7 @@
 #include "NiagaraComponent.h"
 #include "GrabComponent.h"
 #include "VRHandAnimComponent.h"
+#include "VRBodyAnimInstance.h"
 // Sets default values
 AVR_Player::AVR_Player()
 {
@@ -95,6 +96,7 @@ void AVR_Player::BeginPlay()
 		}
 
 	}
+	bodyAnim = Cast<UVRBodyAnimInstance>(GetMesh()->GetAnimInstance());
 }
 
 // Called every frame
@@ -102,6 +104,20 @@ void AVR_Player::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	if (bodyAnim != nullptr)
+	{
+		bodyAnim->leftHandLocation = leftController->GetComponentLocation();
+		bodyAnim->leftHandRotation = leftController->GetComponentRotation();
+
+		bodyAnim->rightHandLocation = rightController->GetComponentLocation();
+		bodyAnim->rightHandRotation = rightController->GetComponentRotation();
+
+		bodyAnim->headLocation = cameraComp->GetComponentLocation();
+		bodyAnim->headRotation = cameraComp->GetComponentRotation();
+
+
+
+	}
 }
 
 // Called to bind functionality to input

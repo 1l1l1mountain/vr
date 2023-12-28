@@ -89,4 +89,7 @@ private:
 	void PlayerMove(const FInputActionValue& value);
 	void PlayerRotate(const FInputActionValue& value);
 	void BasicTeleport(float sightRange, FVector direction,FVector pivot);
+
+
+	class UVRBodyAnimInstance* bodyAnim;
 };

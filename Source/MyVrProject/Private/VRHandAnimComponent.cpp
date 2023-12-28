@@ -100,7 +100,7 @@ void UVRHandAnimComponent::InputIndexTriggerTouch_Left(const FInputActionValue& 
 {
 	if (handAnim_Left != nullptr)
 	{
-		handAnim_Left->PoseAlphaPoint_cpp = value.Get<bool>();
+		handAnim_Left->PoseAlphaPoint_cpp = value.Get<bool>() == true ? 0 : 1.0f;
 
 	}
 
@@ -111,7 +111,7 @@ void UVRHandAnimComponent::InputThumbstickTouch_Left(const FInputActionValue& va
 
 	if (handAnim_Left != nullptr)
 	{
-		handAnim_Left->PoseAlphaThumbUp_cpp = value.Get<bool>();
+		handAnim_Left->PoseAlphaThumbUp_cpp = value.Get<bool>() == true ? 0 : 1.0f;
 
 	}
 }
@@ -138,8 +138,8 @@ void UVRHandAnimComponent::InputIndexTriggerTouch_Right(const FInputActionValue&
 {
 	if (handAnim_Right != nullptr)
 	{
-		handAnim_Right->PoseAlphaPoint_cpp = value.Get<bool>();
-
+		handAnim_Right->PoseAlphaPoint_cpp = value.Get<bool>() == true ? 0: 1.0f;
+	
 	}
 }
 
@@ -147,7 +147,7 @@ void UVRHandAnimComponent::InputThumbstickTouch_Right(const FInputActionValue& v
 {
 	if (handAnim_Right != nullptr)
 	{
-		handAnim_Right->PoseAlphaThumbUp_cpp = value.Get<bool>();
+		handAnim_Right->PoseAlphaThumbUp_cpp = value.Get<bool>() == true ? 0 : 1.0f;
 
 	}
 }

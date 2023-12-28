@@ -36,4 +36,9 @@ public:
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = MySettings)
 	bool bMirror_cpp =false;
+
+
+	//Actor 클래스의 Tick() 함수와 같은 이벤트 함수
+	virtual void NativeUpdateAnimation(float DeltaSeconds) override;
+
 };
