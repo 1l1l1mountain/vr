@@ -40,7 +40,7 @@ void APickUpActor::Tick(float DeltaTime)
 
 }
 
-void APickUpActor::Grabbed(USkeletalMeshComponent* handMesh, EAttachmentRule attachmentRules)
+void APickUpActor::GrabbedObject(USkeletalMeshComponent* handMesh, EAttachmentRule attachmentRules)
 {
 	// 잡혔을 때의 핸드 메시에 부착된다.
 	

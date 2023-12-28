@@ -36,7 +36,7 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	void Grabbed(class USkeletalMeshComponent* handMesh, EAttachmentRule attachmentRules);
+	void GrabbedObject(class USkeletalMeshComponent* handMesh, EAttachmentRule attachmentRules);
 	void Released(FVector deltaPosition, FQuat deltaRotation);
 	
 	

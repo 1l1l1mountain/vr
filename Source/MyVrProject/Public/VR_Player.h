@@ -51,7 +51,8 @@ public:
 	class UNiagaraComponent* teleportFX;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category= "MySettings|Components")
 	class UGrabComponent* grabComp;
-
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category= "MySettings|Components")
+	class UVRHandAnimComponent* handAnimComp;
 
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category= "MySettings|Inputs")

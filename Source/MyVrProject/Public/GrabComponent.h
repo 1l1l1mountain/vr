@@ -25,12 +25,12 @@ public:
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
 	
-	void SetupPlayerInpQutComponent(class UEnhancedInputComponent* enhancedInputComponent, TArray<class UInputAction *>inputs);
+	void SetupPlayerInputComponent(class UEnhancedInputComponent* enhancedInputComponent, TArray<class UInputAction *>inputs);
 
 private:
 	class AVR_Player* player;
 
-	void GrabObject();
+	void Grabbed();
 	void ReleaseObject();
 	class APickUpActor* currentObject;
 	FVector prevLoc;
