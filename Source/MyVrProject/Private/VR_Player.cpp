@@ -25,6 +25,9 @@ AVR_Player::AVR_Player()
 	cameraComp = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
 	cameraComp->SetupAttachment(RootComponent);
 
+	gazeMeshComp = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Gaze Mesh"));
+	gazeMeshComp->SetupAttachment(cameraComp);
+
 	hmdMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("HMD Mesh"));
 	hmdMesh->SetupAttachment(cameraComp);
 

@@ -53,6 +53,9 @@ public:
 	class UGrabComponent* grabComp;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category= "MySettings|Components")
 	class UVRHandAnimComponent* handAnimComp;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category= "MySettings|Components")
+	class UStaticMeshComponent* gazeMeshComp;
+
 
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category= "MySettings|Inputs")
