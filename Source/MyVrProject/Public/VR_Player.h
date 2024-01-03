@@ -37,10 +37,15 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category= "MySettings|Components")
 	class USkeletalMeshComponent* leftHand;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category= "MySettings|Components")
+	class UWidgetInteractionComponent* leftPointer;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category= "MySettings|Components")
 	class UMotionControllerComponent* rightController;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category= "MySettings|Components")
 	class USkeletalMeshComponent* rightHand;
-	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category= "MySettings|Components")
+	class UWidgetInteractionComponent* rightPointer;
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category= "MySettings|Components")
 	class UTextRenderComponent* leftLog;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category= "MySettings|Components")
@@ -57,6 +62,9 @@ public:
 	class UStaticMeshComponent* gazeMeshComp;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category= "MySettings|Components")
 	class UGazeComponent* gazeComp;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category= "MySettings|Components")
+	class UWidgetPointerComponent* widgetPointerComp;
+
 
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category= "MySettings|Inputs")

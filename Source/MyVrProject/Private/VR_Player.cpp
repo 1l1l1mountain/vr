@@ -17,6 +17,8 @@
 #include "VRHandAnimComponent.h"
 #include "VRBodyAnimInstance.h"
 #include "GazeComponent.h"
+#include "Components/WidgetInteractionComponent.h"
+#include "WidgetPointerComponent.h"
 // Sets default values
 AVR_Player::AVR_Player()
 {
@@ -53,6 +55,8 @@ AVR_Player::AVR_Player()
 	leftLog->SetWorldSize(20);
 	leftLog->SetTextRenderColor(FColor(255,255,0));
 
+	leftPointer = CreateDefaultSubobject<UWidgetInteractionComponent>(TEXT("Left Widget Pointer"));
+	leftPointer->SetupAttachment(leftHand);
 
 	rightController = CreateDefaultSubobject<UMotionControllerComponent>(TEXT("Right Controller"));
 	rightController->SetupAttachment(RootComponent);
@@ -73,6 +77,9 @@ AVR_Player::AVR_Player()
 	rightLog->SetWorldSize(20);
 	rightLog->SetTextRenderColor(FColor(255, 255, 0));
 
+	rightPointer = CreateDefaultSubobject<UWidgetInteractionComponent>(TEXT("Right Widget Pointer"));
+	rightPointer->SetupAttachment(rightHand);
+
 	teleportFX = CreateDefaultSubobject<UNiagaraComponent>(TEXT("Teleport Effect"));
 	teleportFX->SetupAttachment(leftHand);
 
@@ -83,6 +90,8 @@ AVR_Player::AVR_Player()
 	grabComp = CreateDefaultSubobject<UGrabComponent>(TEXT("Grab Component"));
 	handAnimComp = CreateDefaultSubobject<UVRHandAnimComponent>(TEXT("VR Hand Anim Copmonent"));
 	gazeComp = CreateDefaultSubobject<UGazeComponent>(TEXT("Gaze Copmonent"));
+	widgetPointerComp = CreateDefaultSubobject<UWidgetPointerComponent>(TEXT("Widget Pointer Component"));
+	
 }
 
 // Called when the game starts or when spawned
@@ -161,6 +170,7 @@ void AVR_Player::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent
 		moveComp->SetupPlayerInputComponent(enhancedInputComponent, ia_inputs);
 		grabComp->SetupPlayerInputComponent(enhancedInputComponent, ia_inputs);
 		handAnimComp->SetupPlayerInputComponent(enhancedInputComponent, ia_inputs);
+		widgetPointerComp->SetupPlayerInputComponent(enhancedInputComponent, ia_inputs);
 	}
 }
 
