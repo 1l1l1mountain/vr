@@ -27,5 +27,16 @@ public:
 
 private:
 	class AVR_Player* player;
-		
+
+	bool bIsLeftGrip = false;
+	bool bIsRightGrip = false;
+
+
+	float GetControllerAngle(FVector leftControllerLoc, FVector rightControllerLoc,FVector baseDirection);
+
+	void GripLeftOn();
+	void GripLeftOff();
+	void GripRightOn();
+	void GripRightOff();
+
 };

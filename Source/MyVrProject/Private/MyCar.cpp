@@ -37,7 +37,7 @@ void AMyCar::Tick(float DeltaTime)
 
 void AMyCar::RotateCar(float angle)
 {
-	SetActorRotation(GetActorRotation() + FRotator(0,angle,0));
-
+	//SetActorRotation(GetActorRotation() + FRotator(0,angle,0));
+	SetActorRotation(FRotator(0,angle,0));
 }
 

@@ -94,7 +94,7 @@ AVR_Player::AVR_Player()
 	handAnimComp = CreateDefaultSubobject<UVRHandAnimComponent>(TEXT("VR Hand Anim Copmonent"));
 	gazeComp = CreateDefaultSubobject<UGazeComponent>(TEXT("Gaze Copmonent"));
 	widgetPointerComp = CreateDefaultSubobject<UWidgetPointerComponent>(TEXT("Widget Pointer Component"));
-	
+	carControllerComp = CreateDefaultSubobject<UCarControllerComponent>(TEXT("Car Controller Component"));
 }
 
 // Called when the game starts or when spawned
@@ -145,7 +145,7 @@ void AVR_Player::Tick(float DeltaTime)
 
 	}
 
-	//일단 난 안됐음..
+	//일단 난 안됐음.. 
 	/*if (controlledCar != nullptr)
 	{
 		controlledCar->RotateCar(0.1f);
