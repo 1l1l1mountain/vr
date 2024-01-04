@@ -19,6 +19,9 @@
 #include "GazeComponent.h"
 #include "Components/WidgetInteractionComponent.h"
 #include "WidgetPointerComponent.h"
+#include "MyCar.h"
+#include "EngineUtils.h"
+#include "CarControllerComponent.h"
 // Sets default values
 AVR_Player::AVR_Player()
 {
@@ -113,6 +116,13 @@ void AVR_Player::BeginPlay()
 
 	}
 	bodyAnim = Cast<UVRBodyAnimInstance>(GetMesh()->GetAnimInstance());
+
+	//월드에 차 액터를 찾아서 변수에 할당한다.
+	for (TActorIterator<AMyCar> car(GetWorld()); car; ++car)
+	{
+		controlledCar = *car;
+	}
+
 }
 
 // Called every frame
@@ -134,6 +144,13 @@ void AVR_Player::Tick(float DeltaTime)
 
 
 	}
+
+	//일단 난 안됐음..
+	/*if (controlledCar != nullptr)
+	{
+		controlledCar->RotateCar(0.1f);
+	}*/
+
 }
 
 // Called to bind functionality to input
@@ -171,6 +188,7 @@ void AVR_Player::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent
 		grabComp->SetupPlayerInputComponent(enhancedInputComponent, ia_inputs);
 		handAnimComp->SetupPlayerInputComponent(enhancedInputComponent, ia_inputs);
 		widgetPointerComp->SetupPlayerInputComponent(enhancedInputComponent, ia_inputs);
+		carControllerComp->SetupPlayerInputComponent(enhancedInputComponent, ia_inputs);
 	}
 }
 

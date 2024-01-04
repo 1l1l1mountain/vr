@@ -65,7 +65,13 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category= "MySettings|Components")
 	class UWidgetPointerComponent* widgetPointerComp;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "MySettings|Components")
+	class UCarControllerComponent* carControllerComp;
 
+	UPROPERTY(EditAnywhere, Category = "MySettings|Variables")
+	class AMyCar* controlledCar;
+
+	//class APlayerController* pc;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category= "MySettings|Inputs")
 	class UInputMappingContext* imc;
