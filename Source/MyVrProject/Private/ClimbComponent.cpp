@@ -38,20 +38,19 @@ void UClimbComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActor
 
 		FVector currentHandLocation = bClimbHandLeft ? player->leftController->GetComponentLocation() : player->rightController->GetComponentLocation();
 		
-		FVector delta = currentHandLocation - prevHandLoc;
-		delta.Normalize();
-		prevHandLoc = currentHandLocation;
+		FVector delta =   prevHandLoc - currentHandLocation;
 		
 		player->GetCharacterMovement()->GravityScale = 0;
+		prevHandLoc = bClimbHandLeft ? player->leftController->GetComponentLocation() : player->rightController->GetComponentLocation();
 
 		UE_LOG(LogTemp, Warning, TEXT("CURRENT HAND : %s"), bClimbHandLeft ? *FString("Left") : *FString("Right"));
 		UE_LOG(LogTemp, Warning, TEXT("delta x : %f, y : %f , z: %f"), delta.X, delta.Y ,delta.Z);
-		player->AddActorWorldOffset(delta * -1*30);
+		player->AddActorWorldOffset(delta);
 	}
 	else
 	{
 
-		//player->GetCharacterMovement()->GravityScale = 1.0f;
+		player->GetCharacterMovement()->GravityScale = 1.0f;
 
 	}
 
