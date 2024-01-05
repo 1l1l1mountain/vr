@@ -68,6 +68,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "MySettings|Components")
 	class UCarControllerComponent* carControllerComp;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "MySettings|Components")
+	class UClimbComponent* climbComp;
+
 	UPROPERTY(EditAnywhere, Category = "MySettings|Variables")
 	class AMyCar* controlledCar;
 

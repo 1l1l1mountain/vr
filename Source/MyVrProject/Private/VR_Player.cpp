@@ -22,6 +22,7 @@
 #include "MyCar.h"
 #include "EngineUtils.h"
 #include "CarControllerComponent.h"
+#include "ClimbComponent.h"
 // Sets default values
 AVR_Player::AVR_Player()
 {
@@ -95,6 +96,7 @@ AVR_Player::AVR_Player()
 	gazeComp = CreateDefaultSubobject<UGazeComponent>(TEXT("Gaze Copmonent"));
 	widgetPointerComp = CreateDefaultSubobject<UWidgetPointerComponent>(TEXT("Widget Pointer Component"));
 	carControllerComp = CreateDefaultSubobject<UCarControllerComponent>(TEXT("Car Controller Component"));
+	climbComp = CreateDefaultSubobject<UClimbComponent>(TEXT("Climb Component"));
 }
 
 // Called when the game starts or when spawned
@@ -189,6 +191,7 @@ void AVR_Player::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent
 		handAnimComp->SetupPlayerInputComponent(enhancedInputComponent, ia_inputs);
 		widgetPointerComp->SetupPlayerInputComponent(enhancedInputComponent, ia_inputs);
 		carControllerComp->SetupPlayerInputComponent(enhancedInputComponent, ia_inputs);
+		climbComp->SetupPlayerInputComponent(enhancedInputComponent, ia_inputs);
 	}
 }
 
@@ -283,7 +286,7 @@ void AVR_Player::PlayerRotate(const FInputActionValue& value)
 
 	// 회전한다.
 	AddControllerYawInput(inputDir);
-	
+	//AddControllerPitchInput(inputDir);
 
 
 }
